@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import Embed from './components/Embed';
+import CustomForm from './components/CustomForm';
+import Box from '@mui/material/Box';
+
 
 function App() {
+
+  const [venue, setVenue] = useState(null)
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            alignContent: 'center',
+            justifyContent: 'space-between'
+          }}
+      >
+      <Embed 
+      venue={venue}
+      />
+      <CustomForm 
+      venue={venue}
+      setVenue={setVenue}
+      />
+      </Box>
+    </>
   );
 }
 
