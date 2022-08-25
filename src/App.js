@@ -1,34 +1,60 @@
-import React, {useState} from "react";
-import Embed from './components/Embed';
-import CustomForm from './components/CustomForm';
-import Box from '@mui/material/Box';
+import React, { useState, createContext } from "react";
+import Embed from "./components/Embed";
+import CustomForm from "./components/CustomForm";
+import Box from "@mui/material/Box";
 
+export const VenueContext = createContext();
 
 function App() {
-
-  const [venue, setVenue] = useState(null)
-  
+  const [env, setEnv] = useState("dev");
+  const [spaceId, setSpaceId] = useState("");
+  const [venueId, setVenueId] = useState("");
+  const [showUI, setShowUI] = useState(true);
+  const [showReaction, setShowReaction] = useState(false);
+  const [showBackground, setShowBackground] = useState(true);
+  const [showHands, setShowHands] = useState(true);
+  const [showSpeakers, setShowSpeakers] = useState(true);
+  const [showStage, setShowStage] = useState("");
+  const [maxNodes, setMaxNodes] = useState("null");
 
   return (
-    <>
-    <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            alignContent: 'center',
-            justifyContent: 'space-between'
-          }}
+    <VenueContext.Provider
+      value={{
+        env,
+        setEnv,
+        spaceId,
+        setSpaceId,
+        venueId,
+        setVenueId,
+        showUI,
+        setShowUI,
+        showReaction,
+        setShowReaction,
+        showBackground,
+        setShowBackground,
+        showHands,
+        setShowHands,
+        showSpeakers,
+        setShowSpeakers,
+        showStage,
+        setShowStage,
+        maxNodes,
+        setMaxNodes,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "row",
+          alignContent: "center",
+          justifyContent: "space-between",
+        }}
       >
-      <Embed 
-      venue={venue}
-      />
-      <CustomForm 
-      venue={venue}
-      setVenue={setVenue}
-      />
+        <Embed />
+        <CustomForm />
       </Box>
-    </>
+    </VenueContext.Provider>
   );
 }
 

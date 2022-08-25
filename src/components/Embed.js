@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useContext } from "react";
+import { VenueContext } from "../App";
 
-function Embed ({venue}) {
+function Embed() {
+  const {
+    env,
+    setEnv,
+    spaceId,
+    setSpaceId,
+    venueId,
+    setVenueId,
+    showUI,
+    setShowUI,
+    showReaction,
+    setShowReaction,
+    showBackground,
+    setShowBackground,
+    showHands,
+    setShowHands,
+    showSpeakers,
+    setShowSpeakers,
+    showStage,
+    setShowStage,
+    maxNodes,
+    setMaxNodes,
+  } = useContext(VenueContext);
 
-  let url = ""
-  if (!venue) return
-  console.log(venue.spaceId)
-  if (venue.spaceId) {
-   url = `https://dev.venues.vimeows.com/embed/${venue.venueId}/${venue.spaceId}?showBackground=${venue.showBackground}&showUI=${venue.showUI}&showReaction=${venue.showReaction}&showHands=${venue.showHands}&showSpeakers=${venue.showSpeakers}&showStage=${venue.showStage}&maxNodes=${venue.maxNodes}`
+  let baseUrl = "";
+  console.log(env);
+  env === "dev"
+    ? (baseUrl = "https://dev.venues.vimeows.com")
+    : (baseUrl = "https://venues.vimeo.com");
 
-  } else {
-    url = `https://dev.venues.vimeows.com/embed/${venue.venueId}?showBackground=${venue.showBackground}&showUI=${venue.showUI}&showReaction=${venue.showReaction}&showHands=${venue.showHands}&showSpeakers=${venue.showSpeakers}&showStage=${venue.showStage}&maxNodes=${venue.maxNodes}`
-  }
-   console.log({url})
+  if (venueId === "") return;
 
-  return(
-    <iframe src={url}
-          allow="camera;microphone" frameBorder="0" width= "100%" height="750px">
-          </iframe>
-  )
+  let spacer = spaceId === "" ? "" : "/";
+
+  let url = `${baseUrl}/embed/${venueId}${spacer}${spaceId}?showBackground=${showBackground}&showUI=${showUI}&showReaction=${showReaction}&showHands=${showHands}&showSpeakers=${showSpeakers}&showStage=${showStage}&maxNodes=${maxNodes}`;
+
+  console.log({ url });
+
+  return (
+    <iframe
+      src={url}
+      allow="camera;microphone"
+      frameBorder="0"
+      width="100%"
+      height="750px"
+    ></iframe>
+  );
 }
 
 export default Embed;
