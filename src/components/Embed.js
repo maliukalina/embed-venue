@@ -4,25 +4,15 @@ import { VenueContext } from "../App";
 function Embed() {
   const {
     env,
-    setEnv,
     spaceId,
-    setSpaceId,
     venueId,
-    setVenueId,
     showUI,
-    setShowUI,
     showReaction,
-    setShowReaction,
     showBackground,
-    setShowBackground,
     showHands,
-    setShowHands,
     showSpeakers,
-    setShowSpeakers,
     showStage,
-    setShowStage,
     maxNodes,
-    setMaxNodes,
   } = useContext(VenueContext);
 
   let baseUrl = "";
@@ -46,6 +36,7 @@ function Embed() {
       frameBorder="0"
       width="100%"
       height="750px"
+      title="venue"
     ></iframe>
   );
 }
