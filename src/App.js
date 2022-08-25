@@ -45,7 +45,6 @@ function App() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
           flexDirection: "row",
           alignContent: "center",
           justifyContent: "space-between",
